@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using MongoDB.Bson;
 using Nancy.ModelBinding;
+using Nancy.Security;
 
 namespace NancyDemo
 {
@@ -13,6 +14,8 @@ namespace NancyDemo
             : base("/api") 
         {
             _tasks = tasks;
+
+            this.RequiresAuthentication();
 
             Get["/tasks"] = GetTask;
             Post["/tasks"] = AddTask;
